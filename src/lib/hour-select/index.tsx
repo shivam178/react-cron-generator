@@ -1,21 +1,21 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent } from 'react';
 interface HourSelectProp {
-  disabled?: boolean
-  onChange(event: ChangeEvent<HTMLSelectElement>): void
-  value: string
+  disabled?: boolean;
+  onChange(event: ChangeEvent<HTMLSelectElement>): void;
+  value: string;
 }
 const HourSelect: React.FunctionComponent<HourSelectProp> = (props) => {
   const buildOptions = () => {
-    let options = []
+    let options = [];
     for (let i = 0; i < 24; i++) {
       options.push(
         <option key={i} id={i.toString()}>
           {(i < 10 ? '0' : '') + i}
         </option>,
-      )
+      );
     }
-    return options
-  }
+    return options;
+  };
 
   return (
     <select
@@ -26,7 +26,7 @@ const HourSelect: React.FunctionComponent<HourSelectProp> = (props) => {
     >
       {buildOptions()}
     </select>
-  )
-}
+  );
+};
 
-export default HourSelect
+export default HourSelect;

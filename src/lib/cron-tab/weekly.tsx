@@ -1,72 +1,72 @@
-import React, { FunctionComponent } from 'react'
-import Minutes from '../minutes-select'
-import Hour from '../hour-select'
+import React, { FunctionComponent } from 'react';
+import Minutes from '../minutes-select';
+import Hour from '../hour-select';
 
 interface WeeklyCronProp {
-  onChange(e?: string[]): void
-  value: string[]
-  translate(e: string): string
-  disabled?: boolean
+  onChange(e?: string[]): void;
+  value: string[];
+  translate(e: string): string;
+  disabled?: boolean;
 }
 
 const WeeklyCron: FunctionComponent<WeeklyCronProp> = (props) => {
   const onAtHourChange = (e: { target: { value: string } }) => {
     if (props.disabled) {
-      return
+      return;
     }
-    let val = props.value
-    val[0] = '0'
-    val[2] = `${e.target.value}`
-    props.onChange(val)
-  }
+    let val = props.value;
+    val[0] = '0';
+    val[2] = `${e.target.value}`;
+    props.onChange(val);
+  };
 
   const onAtMinuteChange = (e: { target: { value: string } }) => {
     if (props.disabled) {
-      return
+      return;
     }
-    let val = props.value
-    val[0] = '0'
-    val[1] = `${e.target.value}`
-    props.onChange(val)
-  }
+    let val = props.value;
+    val[0] = '0';
+    val[1] = `${e.target.value}`;
+    props.onChange(val);
+  };
 
   const onCheck = (e: { target: { checked: boolean; value: string } }) => {
     if (props.disabled) {
-      return
+      return;
     }
-    let val = props.value
-    val[0] = '0'
+    let val = props.value;
+    val[0] = '0';
     if (e.target.checked) {
-      onDayChecked(val, e)
+      onDayChecked(val, e);
     } else {
-      onDayUnChecked(val, e)
+      onDayUnChecked(val, e);
     }
-    props.onChange(val)
-  }
+    props.onChange(val);
+  };
 
   const onDayChecked = (val: string[], e: { target: { checked: boolean; value: string } }) => {
-    val[2] = `${val[2]}`.split('/').length > 1 ? '0' : val[2].toString()
-    val[3] = '?'
-    val[4] = '*'
+    val[2] = `${val[2]}`.split('/').length > 1 ? '0' : val[2].toString();
+    val[3] = '?';
+    val[4] = '*';
     if (val[5] === '*' || val[5] === '?' || val[5] === 'MON-FRI') {
-      val[5] = e.target.value
+      val[5] = e.target.value;
     } else {
-      val[5] = val[5] + '!' + e.target.value
+      val[5] = val[5] + '!' + e.target.value;
     }
-  }
+  };
 
   const onDayUnChecked = (val: string[], e: { target: { checked: boolean; value: string } }) => {
-    let valFive: string | string[] = val[5].split('!')
+    let valFive: string | string[] = val[5].split('!');
     if (valFive.length > 1) {
-      valFive.splice(valFive.indexOf(e.target.value), 1)
-      valFive = valFive.toString().replace(/,/g, '!')
+      valFive.splice(valFive.indexOf(e.target.value), 1);
+      valFive = valFive.toString().replace(/,/g, '!');
     } else {
-      valFive = '*'
+      valFive = '*';
     }
-    val[5] = valFive
-  }
+    val[5] = valFive;
+  };
 
-  const translateFn = props.translate
+  const translateFn = props.translate;
   return (
     <div className="container-fluid">
       <div className="well well-small row">
@@ -174,7 +174,7 @@ const WeeklyCron: FunctionComponent<WeeklyCronProp> = (props) => {
       <Hour onChange={onAtHourChange} value={props.value[2]} disabled={props.disabled} />
       <Minutes onChange={onAtMinuteChange} value={props.value[1]} disabled={props.disabled} />
     </div>
-  )
-}
+  );
+};
 
-export default WeeklyCron
+export default WeeklyCron;

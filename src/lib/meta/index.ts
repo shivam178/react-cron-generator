@@ -1,27 +1,27 @@
-import Minutes from '../cron-tab/minutes'
-import Daily from '../cron-tab/daily'
-import Hourly from '../cron-tab/hourly'
-import Weekly from '../cron-tab/weekly'
-import Monthly from '../cron-tab/monthly'
-import Custom from '../cron-tab/custom'
+import Minutes from '../cron-tab/minutes';
+import Daily from '../cron-tab/daily';
+import Hourly from '../cron-tab/hourly';
+import Weekly from '../cron-tab/weekly';
+import Monthly from '../cron-tab/monthly';
+import Custom from '../cron-tab/custom';
 
-export type HeaderKeyType = 'MINUTES' | 'HOURLY' | 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'CUSTOM'
-export type HeaderValType = 'Minutes' | 'Hourly' | 'Daily' | 'Weekly' | 'Monthly' | 'Custom'
+export type HeaderKeyType = 'MINUTES' | 'HOURLY' | 'DAILY' | 'WEEKLY' | 'MONTHLY' | 'CUSTOM';
+export type HeaderValType = 'Minutes' | 'Hourly' | 'Daily' | 'Weekly' | 'Monthly' | 'Custom';
 interface HeadersKeyInterface {
-  MINUTES: 'MINUTES'
-  HOURLY: 'HOURLY'
-  DAILY: 'DAILY'
-  WEEKLY: 'WEEKLY'
-  MONTHLY: 'MONTHLY'
-  CUSTOM: 'CUSTOM'
+  MINUTES: 'MINUTES';
+  HOURLY: 'HOURLY';
+  DAILY: 'DAILY';
+  WEEKLY: 'WEEKLY';
+  MONTHLY: 'MONTHLY';
+  CUSTOM: 'CUSTOM';
 }
 interface HeadersInterface {
-  MINUTES: 'Minutes'
-  HOURLY: 'Hourly'
-  DAILY: 'Daily'
-  WEEKLY: 'Weekly'
-  MONTHLY: 'Monthly'
-  CUSTOM: 'Custom'
+  MINUTES: 'Minutes';
+  HOURLY: 'Hourly';
+  DAILY: 'Daily';
+  WEEKLY: 'Weekly';
+  MONTHLY: 'Monthly';
+  CUSTOM: 'Custom';
 }
 export const HEADER: HeadersKeyInterface = {
   MINUTES: 'MINUTES',
@@ -30,7 +30,7 @@ export const HEADER: HeadersKeyInterface = {
   WEEKLY: 'WEEKLY',
   MONTHLY: 'MONTHLY',
   CUSTOM: 'CUSTOM',
-}
+};
 
 const HEADER_VALUES: HeadersInterface = {
   MINUTES: 'Minutes',
@@ -39,7 +39,7 @@ const HEADER_VALUES: HeadersInterface = {
   WEEKLY: 'Weekly',
   MONTHLY: 'Monthly',
   CUSTOM: 'Custom',
-}
+};
 
 const defaultTabs: HeaderValType[] = [
   HEADER_VALUES.MINUTES,
@@ -48,12 +48,12 @@ const defaultTabs: HeaderValType[] = [
   HEADER_VALUES.WEEKLY,
   HEADER_VALUES.MONTHLY,
   HEADER_VALUES.CUSTOM,
-]
+];
 
 interface MetadataInterface {
-  component: typeof Custom
-  name: HeaderValType
-  initialCron: string[]
+  component: typeof Custom;
+  name: HeaderValType;
+  initialCron: string[];
 }
 
 export const metadata: MetadataInterface[] = [
@@ -87,20 +87,20 @@ export const metadata: MetadataInterface[] = [
     name: HEADER_VALUES.CUSTOM,
     initialCron: ['*', '*', '*', '*', '*', '*', '*'],
   },
-]
+];
 
 const validateHeaders = (headers: HeaderKeyType[]): HeaderValType[] => {
-  const validatedHeaders: HeaderValType[] = []
+  const validatedHeaders: HeaderValType[] = [];
   headers.forEach((header) => {
     if (!HEADER_VALUES[header]) {
-      throw new Error('Invalid header ' + header)
+      throw new Error('Invalid header ' + header);
       // Avoid duplicates
     } else if (validatedHeaders.indexOf(HEADER_VALUES[header]) === -1) {
-      validatedHeaders.push(HEADER_VALUES[header])
+      validatedHeaders.push(HEADER_VALUES[header]);
     }
-  })
-  return validatedHeaders
-}
+  });
+  return validatedHeaders;
+};
 
 /**
  * Validate and load headers
@@ -110,10 +110,10 @@ export const loadHeaders = (options?: { headers: HeaderKeyType[] }): HeaderValTy
   if (options) {
     if (options.headers) {
       if (!options.headers.length) {
-        throw new Error('Atleast one header is required.')
+        throw new Error('Atleast one header is required.');
       }
-      return validateHeaders(options.headers)
+      return validateHeaders(options.headers);
     }
   }
-  return defaultTabs
-}
+  return defaultTabs;
+};
