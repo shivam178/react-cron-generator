@@ -65,7 +65,9 @@
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
     "react-build": "CI=false && react-scripts build",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "format": "prettier --write src/**/*.{ts,tsx}",
+    "check-format": "prettier --check src/**/*.{ts,tsx}"
   },
   "homepage": "https://sojinantony01.github.io/react-cron-generator",
   "eslintConfig": {

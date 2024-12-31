@@ -37,7 +37,7 @@ jobs:
         start: npm start
     
     - name: Lint
-      run: npx prettier . --check
+      run: npm run check-format
 
     - name: Build
       run: npm run react-build
