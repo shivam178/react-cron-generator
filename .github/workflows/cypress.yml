@@ -24,8 +24,8 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-    - name: install gh pages separately  
-      run: npm install gh-pages react@18.2.0 react-dom@18.2.0
+    # - name: install gh pages separately  
+    #   run: npm install gh-pages react@18.2.0 react-dom@18.2.0
 
     # - name: Upload coverage to Codecov
     #   uses: codecov/codecov-action@v1
@@ -35,9 +35,9 @@ jobs:
       with:
         build: npm run build
         start: npm start
+    
+    - name: Lint
+      run: npx prettier . --check
 
     - name: Build
       run: npm run react-build
-
-    - name: Build
-      run: npx prettier . --check
