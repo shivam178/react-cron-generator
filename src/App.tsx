@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import Cron from './lib';
-import { HEADER } from './lib';
-import  packageConf from  '../package.json'
+import React, { useState } from 'react'
+import Cron from './lib'
+import { HEADER } from './lib'
+import packageConf from '../package.json'
 
-const cronOptions  = {
+const cronOptions = {
   headers: [HEADER.CUSTOM, HEADER.MINUTES, HEADER.HOURLY, HEADER.WEEKLY, HEADER.MONTHLY],
-};
+}
 
 interface State {
   value?: string
@@ -15,20 +15,21 @@ function App() {
 
   return (
     <div>
-      <div>
-        React cron generator: V {packageConf.version}
-      </div>
+      <div>React cron generator: V {packageConf.version}</div>
       <div>
         <Cron
-          onChange={(e, text)=> {setState({value:e}); console.log(e, text)}}
+          onChange={(e, text) => {
+            setState({ value: e })
+            console.log(e, text)
+          }}
           value={state.value}
           showResultText={true}
           showResultCron={true}
           // options={cronOptions}
-          />  
-      </div>               
+        />
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
